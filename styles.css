@@ -1,0 +1,78 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jersey 15", serif;
+    background-color: rgb(46, 40, 40);
+}
+.box h1{
+    text-align: center;
+}
+h1{
+    color: greenyellow;
+    
+}
+.box {
+    width: 420px;
+    background-color: rgb(46, 40, 40);
+    color: white;
+    height: 300px;   
+    
+    
+}
+
+
+input {
+    width: 75%;
+    height: 50px;
+    border-width: 2px;
+    border-radius: 40px;
+    background-color: transparent;
+    color: white;
+    border-color: black;
+    padding-left: 12%;
+    padding-right: 12%;
+    background-color: rgb(103, 103, 108);
+    
+    
+}
+::placeholder{
+    color: greenyellow;
+    font-family: "Jersey 15", serif;
+    font-size: 10px;
+}
+
+
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+    cursor: pointer;
+    padding: 25px;
+    background-color: greenyellow;
+    border-radius: 20px;
+    border-color: black;
+    font-family: "Jersey 15", serif;
+    font-size: larger;
+    
+}
+
+a{
+    padding-left: 80%;
+}
+a:link {
+    color: gray;
+}
+a:visited{
+    color: rgb(198, 191, 191);
+}
+a:hover{
+    color: greenyellow
+}
+
+.button:hover{
+    background-color: rgb(46, 40, 40);
+    
+}
