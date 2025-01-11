@@ -1,5 +1,9 @@
-# all code from this file is from https://neon.tech/docs/guides/python and debugged by chatgpt o1 
+# most of this code from this file is from https://neon.tech/docs/guides/python 
+# all code debugged by chatgpt o1 
 # should work on python version 3.7 and later
+
+#code from neon{
+
 import os
 import ssl
 import psycopg2
@@ -40,13 +44,17 @@ def connect_to_neon():
         )
         print("Connected to Neon database")
         
+#code from neon }
+        
         # Example query
         with conn.cursor() as cur:
             cur.execute("SELECT NOW(), version()")
             record = cur.fetchone()
             print("Current time:", record[0])
             print("PostgreSQL version:", record[1])
-
+            
+#code from neon {
+    
     except psycopg2.Error as e:
         print("Error connecting to database:", e)
     finally:
@@ -55,3 +63,5 @@ def connect_to_neon():
 
 if __name__ == "__main__":
     connect_to_neon()
+   
+#code from neon }
