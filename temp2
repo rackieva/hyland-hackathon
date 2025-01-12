@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Hyland Hakathon</title>
+        <link href="styles3.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="leftside">
+                <form action="">
+                    <p>url</p>
+                    <input type="text" placeholder="Enter URL" class='input' required>
+                    <p>username</p>
+                    <input type="text" placeholder="Enter Username" class='input' required>
+                    <p>password</p>
+                    <input type="text" placeholder="Enter Password" class='input' required>
+                </form>
+                <button class="button">add</button>
+                <div class="buttons">
+                    <button class="button2">Encrypt</button>
+                    <button class="button3">Encrypt</button>
+                    <button class="button4">Encrypt</button>
+                </div>
+            </div>
+            <div class="rightside">
+                <table>
+                    <tr id="row1">
+                        <th id="notdelete">URL</th>
+                        <th id="notdelete">Username</th>
+                        <th id="notdelete">Password</th> 
+                        <th id="delete">Delete</th>
+                    </tr>
+                    <tr id="row2">
+                        <td>www.amazon.com</td>
+                        <td>user1</td>
+                        <td>password1</td>
+                        <td id="delete"><button class="delete">Delete</button></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </body>
+</html>
