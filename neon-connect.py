@@ -1,13 +1,10 @@
-# most of this code from this file is from https://neon.tech/docs/guides/python 
-# all code debugged by chatgpt o1 
+# most code from this file is from https://neon.tech/docs/guides/python and debugged by chatgpt o1 
 # should work on python version 3.7 and later
-
-#code from neon{
-
 import os
 import ssl
 import psycopg2
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse
+from urllib.parse import parse_qs
 
 def connect_to_neon():
     # Hardcoded credentials (not recommended for production)
@@ -28,8 +25,8 @@ def connect_to_neon():
     # (Optional) Create a custom SSL context if desired
     ssl_context = ssl.create_default_context()
     # Adjust as needed. If you truly do not want SSL cert validation:
-    # ssl_context.check_hostname = False
-    # ssl_context.verify_mode = ssl.CERT_NONE
+    #ssl_context.check_hostname = False
+    #ssl_context.verify_mode = ssl.CERT_NONE
     
     # Connect to PostgreSQL
     try:
@@ -40,21 +37,61 @@ def connect_to_neon():
             host=host,
             port=port,
             sslmode=sslmode,          # psycopg2 will handle SSL if sslmode=require
-            sslcontext=ssl_context    # only needed if you're customizing SSL behavior
+            ##sslcontext=ssl_context    # only needed if you're customizing SSL behavior
         )
         print("Connected to Neon database")
         
-#code from neon }
         
-        # Example query
         with conn.cursor() as cur:
-            cur.execute("SELECT NOW(), version()")
-            record = cur.fetchone()
-            print("Current time:", record[0])
-            print("PostgreSQL version:", record[1])
-            
-#code from neon {
-    
+        # Execute a query
+            cur.execute("""
+                create table if not exists loginTable (
+                    login1 text,
+                    url1 text,
+                    userName1 text,
+                    password1 text);
+                
+                prepare clearTable (text) as
+                    delete from loginTable 
+                    where login1 =$1 
+                      and url1 is not null 
+                      and userName1 is not null 
+                      and password1 is not null;
+
+                execute clearTable('spiderman');
+
+                insert into loginTable(login1, url1, userName1, password1)
+                        values
+                            ('spiderman', 'https://google.com', 'Peter_Parker', 'supersecretpassword'),
+                            ('spiderman', 'https://amazon.com', 'Peter_Parker2', 'supersecretpassword2'),
+                            ('spiderman', 'https://apple.com', 'Peter_Parker3', 'supersecretpassword3'),
+                            ('spiderman', 'https://card.com', 'Peter_Parker4', 'supersecretpassword4'),
+                            ('winniethePooh', 'https://google.com', 'Winnie_the_Pooh', 'supersecretpassword'),
+                            ('winniethePooh', 'https://amazon.com', 'Winnie_the_Pooh2', 'super1secretpassword2'),
+                            ('winniethePooh', 'https://apple.com', 'Winnie_the_Pooh3', 'super1secretpassword3'),
+                            ('winniethePooh', 'https://card.com', 'Winnie_the_Pooh4', 'super1secretpassword4');   
+                case
+                    when
+                        -- user inputs 3 values 
+                            then
+                                insert into loginTable(login1, url1, userName1, password1)
+                                values (%s,%s,%s,%s)
+                                 
+                else
+                end;
+                        
+                prepare newTable (text) as
+                    select url1 as "URL", userName1 as "Username", password1 as "Password" from loginTable
+                        where login1 = $1;
+
+                execute newTable(%s);
+                 """, (login, url, usrname, password2, login))
+
+            # connect to html some how
+            results = cur.fetchall()
+            for row in results:
+                print(row)
+
     except psycopg2.Error as e:
         print("Error connecting to database:", e)
     finally:
@@ -63,5 +100,3 @@ def connect_to_neon():
 
 if __name__ == "__main__":
     connect_to_neon()
-   
-#code from neon }
