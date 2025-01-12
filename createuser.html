@@ -6,24 +6,31 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+        <script type="module" src="https://pyscript.net/releases/2024.2.1/core.js"></script>
     </head>
     <body>
         <div class="box">
 
-        <h1>Create Login</h1>
+        <h1>Create User</h1>
         <form action="">
             <div class="inputbox">
-                <input type="text" placeholder="Create Username" required>
+                <input id="username" type="text" placeholder="Create Username" required>
             </div><br>
             <div class="inputbox">
-                <input type="password" placeholder="Create password"><br>
-                <a href="createuser.html">Create User</a><br>
-                <button>Login</button>
+                <input id="password" type="password" placeholder="Create password"><br>
+                <a href="index.html">Login</a><br>
+                <button py-click="make_user" onClick="return false" class="button">Sign-Up</button>
+
             </div>
         </form>
         
         </div>
-        
+        <py-config>
+        packages = ["pandas"]
+        [files]
+        "http://127.0.0.1:5500/templates/username_password.csv" = "./username_password.csv"
+        </py-config>
+        <script type="py" src="./main.py"></script>
         
     </body>
 </html>

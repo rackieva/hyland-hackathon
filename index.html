@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hyland Hakathon</title>
+        <title>Hyland Hackathon</title>
         <link href="styles.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+        
+        <script type="module" src="https://pyscript.net/releases/2024.2.1/core.js"></script>
+        
+        <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css"/>
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script> -->
     </head>
     <body>
         <div class="box">
-
+            
         <h1>Login</h1>
         <form action="">
             <div class="inputbox">
-                <input type="text" placeholder="Username" required>
+                <input id="username" type="text" placeholder="Username" required>
             </div><br>
             <div class="inputbox">
-                <input type="password" placeholder="password"><br>
+                <input id="password" type="password" placeholder="password"><br>
                 <a href="createuser.html">Create User</a><br>
-                <button class="button">Login</button>
+                <!-- Return false stops button from resetting console and input boxes -->
+                <button py-click="check_user" onClick="return false" class="button">Login</button>
+                <!--Add pyscript with event listener instead of onClick, can pyscript change screen? -->
             </div>
         </form>
-        
         </div>
-        
-        
+        <py-config>
+        packages = ["pandas"]
+        [files]
+        "http://127.0.0.1:5500/templates/username_password.csv" = "./username_password.csv"
+        </py-config>
+        <script type="py" src="./main.py"></script>
     </body>
 </html>
